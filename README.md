@@ -4,3 +4,5 @@ A prototype of management system that allows to manage a Household.(Assign tasks
 
 
 
+![User Stories](public/UserStories.png)
+
