@@ -19,7 +19,7 @@ const signUpReducer = () => {
     }
 }
 
-const changesOfReducers = (userData = null, action) => {
+const changesOfReducers = (data = null , action) => {
     switch(action.type){
         case 'CREATE_USER':
         return fetch("http://localhost:3000/v1/users" , {
@@ -50,7 +50,7 @@ const changesOfReducers = (userData = null, action) => {
                 }
             })
         default:
-         return userData
+         return data
     }
 };
 

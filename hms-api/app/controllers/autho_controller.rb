@@ -15,10 +15,10 @@ class AuthoController < ApplicationController
       if autho  
       render json: @user, status: :ok
       else 
-      render json: {errors: "Username/password not found"}    
+      render json: {errors: "Email/password not found"}    
       end 
      else 
-      render json: {errors: "Username/password doesn't exists"}    
+      render json: {errors: "Email/password doesn't exists"}    
     end
     end
     # token = JWT.encode this_user, password, 'HS256'

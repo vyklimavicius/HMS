@@ -21,7 +21,7 @@ A prototype of management system that allows to manage a Household.(Assign tasks
  ![login](public/login.png)
 
  2. Sign up
- ![signup](public/signup.png)
+ ![signup](public/signupv2.png)
 
  3. Dashboard
  ![dashboard](public/dashboard.png)
