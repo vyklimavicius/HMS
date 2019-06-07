@@ -41,28 +41,25 @@ export const handleChange = (bool) => {
     }
 }
 
-export const taskChange = (task) => {
-    // console.log(task);
-    
+  //--// Create task form change
+export const taskChange = (task) => {    
     return {
         type: 'HANDLETASK_CHANGE',
         payload: task
     }
 }
+  //--//
 
 export const addTask = (task) => {
-    // console.log(task);
-
     return {
         type: 'ADD_TASK',
         payload: task
     }
 }
 
-export const deleteTask = (task) => {
+export const deleteTask = () => {
     return {
-        type: 'DELETE_TASK',
-        payload: task
+        type: 'DELETE_TASK'
     }
 }
 

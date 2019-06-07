@@ -7,19 +7,19 @@ const loginReducer = {
 };
 
 const signUpReducer = {
-        username: null,
-        name: null,
-        lastname: null,
-        email: null,
-        password: null,
-        image: null
+    username: null,
+    name: null,
+    lastname: null,
+    email: null,
+    password: null,
+    image: null
 };
 
 const taskbar = {
-  tasks: [],
-  name: null,
-  description: null,
-  clicked: false
+    tasks: [],
+    name: null,
+    description: null,
+    clicked: false
 }
 
 const currentUser = () => {
@@ -78,21 +78,18 @@ const changesUserLogin = (login = loginReducer ,action) => {
 const changesTask = ( taskBar = taskbar, action) => {
     switch (action.type) {
         case 'CHANGE_STATE':
-            // debugger
             return {...taskBar, ...action.payload}
         case 'HANDLETASK_CHANGE':
             return Object.assign(taskBar, action.payload)
         case 'ADD_TASK':
-            // debugger
             return Object.assign(taskBar, {
                 tasks: [...taskBar.tasks, action.payload]
             })
-            // taskBar.tasks.push(action.payload);
-            // let newArray = taskBar.tasks;
-            // let newArray = taskBar.tasks;
-            // taskBar.tasks = [...newArray, action.payload]
-            // return newArray
-            // return [...taskBar.tasks, action.payload]
+        case 'DELETE_TASK':
+            taskBar.tasks.pop();
+            return Object.assign(taskBar, {
+                tasks: [...taskBar.tasks]
+        }) 
         default:
          return taskBar
     }

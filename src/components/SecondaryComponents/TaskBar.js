@@ -1,25 +1,25 @@
 import React from 'react';
 import CreateTasks from '../TaskComponents/CreateTasks';
 import { connect } from 'react-redux';
-import { handleChange } from '../../Actions/index'
+import { handleChange, deleteTask } from '../../Actions/index'
 import Task from '../TaskComponents/Task';
 
 const TaskBar = (props) => {
 
     // console.log(props.tasks);
     
-    return (
-        <div>
-            <h2>This is the TaskBar</h2>
-            {props.tasks.map( task => {
-                return <Task task={task}/>
-            })}
-            {props.clicked.clicked ? <CreateTasks name={props.name} description={props.description}/> : null}
-            <button onClick={() => props.handleChange(props.clicked)}>Create task</button>
-            <button onClick={null}>Delete task</button>
-        </div>
-    );
-}
+        return (
+            <div>
+                <h2>This is the TaskBar</h2>
+                {props.tasks.length > 0 ? props.tasks.map(task => {
+                    return <Task task={task} />
+                }) : null}
+                {props.clicked.clicked ? <CreateTasks name={props.name} description={props.description} /> : null}
+                <button onClick={() => props.handleChange(props.clicked)}>Create task</button>
+                <button onClick={props.deleteTask}>Delete task</button>
+            </div>
+        );
+};
 
 const mapStateToProps = (state) => {
     // console.log(state.changesTask);
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { handleChange })(TaskBar);
+export default connect(mapStateToProps, { handleChange, deleteTask })(TaskBar);
