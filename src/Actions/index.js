@@ -12,4 +12,11 @@ export const getUserLogin = (userData) => {
     }
 };
 
+export const handleUserSignUp = (event) => {
+    return {
+        type: 'USER_HANDLECHANGE',
+        payload: event
+    }
+};
+
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getUserLogin } from '../../Actions/index';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,7 +19,11 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.getUserLogin(userLog);
+        if (userLog.password !== userLog.passwordConfirmation) {
+          alert("Password confirmation don't match!")
+        } else {
+          props.getUserLogin(userLog);
+        }
     }
 
     console.log(props);
@@ -32,7 +37,8 @@ const Login = (props) => {
              value={props.user.password} onChange={handleChange}></input>
             <input type="password" name="passwordConfirmation" placeholder="Confirm Password" 
              value={props.user.passwordConfirmation} onChange={handleChange}></input>
-            <input type="submit" value="Submit"></input>
+            <input type="submit" value="Let's task"></input>
+            <Link to="/signup">New member?</Link>
           </form>
         </div>
     )

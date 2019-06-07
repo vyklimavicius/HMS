@@ -11,6 +11,7 @@ import SignUp from './components/MainComponents/SignUp';
 
 
 const App = () => {
+    
     return(
         <Provider store={createStore(Reducers)}>
          <Router>

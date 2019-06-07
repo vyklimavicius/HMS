@@ -1,29 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserSignUp } from '../../Actions/index';
+import { getUserSignUp, handleUserSignUp } from '../../Actions/index';
 
 
 const SignUp = (props) => {
 
-       const userData = {
-         username: null,
-         name: null,
-         lastname: null,
-         email: null,
-         password: null,
-         image: null
-        };
+    //    const userData = {
+    //      username: null,
+    //      name: null,
+    //      lastname: null,
+    //      email: null,
+    //      password: null,
+    //      image: null
+    //     };
 
         const handleChange = (e) => {
-            userData[e.target.name]= e.target.value;
+            // userData[e.target.name]= e.target.value;
+            props.handleUserSignUp({[e.target.name]: e.target.value})
         };
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            props.getUserSignUp(userData);
+            props.getUserSignUp(props.signUp);
         };
         
-
+        // console.log(props.signUp);
+        
         return(
             <div>
                 <h1>Sign Up</h1>
@@ -42,7 +44,8 @@ const SignUp = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return { signUp: state.userSignUp }
+    console.log(state);
+    return { signUp: state.changesInState }
 };
 
-export default connect(mapStateToProps, { getUserSignUp } )(SignUp);
+export default connect(mapStateToProps, { getUserSignUp, handleUserSignUp } )(SignUp);

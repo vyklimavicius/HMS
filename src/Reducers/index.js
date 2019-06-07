@@ -5,23 +5,28 @@ const loginReducer = () => {
         email: null,
         password: null,
         passwordConfirmation: null,
-    }
+    };
 };
 
-const signUpReducer = () => {
-    return {
+const signUpReducer = {
         username: null,
         name: null,
         lastname: null,
         email: null,
         password: null,
         image: null
-    }
+};
+
+const currentUser = () => {
+    return JSON.parse(localStorage.getItem('user'))
 }
 
-const changesOfReducers = (data = null , action) => {
+
+const changesOfReducers = (state = signUpReducer , action) => {
     switch(action.type){
         case 'CREATE_USER':
+        console.log(action.payload);
+        debugger
         return fetch("http://localhost:3000/v1/users" , {
             method: "POST",
             headers: {
@@ -29,7 +34,9 @@ const changesOfReducers = (data = null , action) => {
                 'Content-Type': 'application/json'
             }, 
             body: JSON.stringify({user:action.payload})
-        })
+        }).then(window.location.href = '/login')
+        case 'USER_HANDLECHANGE':
+        return Object.assign(state, action.payload)
         case 'USER_AUTHO':
         return fetch('http://localhost:3000/login', {
                 method: "POST",
@@ -43,20 +50,21 @@ const changesOfReducers = (data = null , action) => {
             }).then( response => response.json())
             .then( user => {
                 if (user.errors) {
-                    alert(user.errors)
+                    alert(user.errors);
                 } else {
-               localStorage.setItem("user", JSON.stringify(user))
-                window.location.href = '/dashboard'
+               localStorage.setItem("user", JSON.stringify(user));
+                window.location.href = '/dashboard';
                 }
             })
         default:
-         return data
+         return state
     }
 };
 
 export default combineReducers({
     userLogin: loginReducer,
-    userSignUp: signUpReducer,
-    changesInState: changesOfReducers
+    // userSignUp: signUpReducer,
+    currentUser: currentUser,
+    changesInState: changesOfReducers,
 });
 
