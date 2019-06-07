@@ -31,3 +31,38 @@ export const handleUserLogin = (event) => {
     }
 };
 
+// Taskbar actions 
+
+export const handleChange = (bool) => {
+    let boolean = bool.clicked;
+    return {
+        type: 'CHANGE_STATE',
+        payload: {clicked: !boolean}
+    }
+}
+
+export const taskChange = (task) => {
+    // console.log(task);
+    
+    return {
+        type: 'HANDLETASK_CHANGE',
+        payload: task
+    }
+}
+
+export const addTask = (task) => {
+    // console.log(task);
+
+    return {
+        type: 'ADD_TASK',
+        payload: task
+    }
+}
+
+export const deleteTask = (task) => {
+    return {
+        type: 'DELETE_TASK',
+        payload: task
+    }
+}
+

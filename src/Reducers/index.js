@@ -15,6 +15,13 @@ const signUpReducer = {
         image: null
 };
 
+const taskbar = {
+  tasks: [],
+  name: null,
+  description: null,
+  clicked: false
+}
+
 const currentUser = () => {
     return JSON.parse(localStorage.getItem('user'))
 }
@@ -68,9 +75,33 @@ const changesUserLogin = (login = loginReducer ,action) => {
         }
 }
 
+const changesTask = ( taskBar = taskbar, action) => {
+    switch (action.type) {
+        case 'CHANGE_STATE':
+            // debugger
+            return {...taskBar, ...action.payload}
+        case 'HANDLETASK_CHANGE':
+            return Object.assign(taskBar, action.payload)
+        case 'ADD_TASK':
+            // debugger
+            return Object.assign(taskBar, {
+                tasks: [...taskBar.tasks, action.payload]
+            })
+            // taskBar.tasks.push(action.payload);
+            // let newArray = taskBar.tasks;
+            // let newArray = taskBar.tasks;
+            // taskBar.tasks = [...newArray, action.payload]
+            // return newArray
+            // return [...taskBar.tasks, action.payload]
+        default:
+         return taskBar
+    }
+}
+
 export default combineReducers({
     userLogin: changesUserLogin,
     currentUser: currentUser,
     changesInState: changesOfUserSignUp,
+    changesTask: changesTask
 });
 

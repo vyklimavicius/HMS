@@ -14,7 +14,7 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (props.password !== props.passwordConfirmation) {
+        if (props.user.password !== props.user.passwordConfirmation) {
           alert("Password confirmation don't match!")
         } else {
           props.getUserLogin(props.user);
@@ -39,7 +39,6 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { user: state.userLogin}
 }
 
