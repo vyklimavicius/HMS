@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
-const loginReducer = () => {
-    return {
-        email: null,
-        password: null,
-        passwordConfirmation: null,
-    };
+const loginReducer = {
+    email: null,
+    password: null,
+    passwordConfirmation: null,
 };
 
 const signUpReducer = {
@@ -22,21 +20,10 @@ const currentUser = () => {
 }
 
 
-const changesOfReducers = (state = signUpReducer , action) => {
+const changesOfUserSignUp = (signUp = signUpReducer ,  action) => {
     switch(action.type){
-        case 'CREATE_USER':
-        console.log(action.payload);
-        debugger
-        return fetch("http://localhost:3000/v1/users" , {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify({user:action.payload})
-        }).then(window.location.href = '/login')
         case 'USER_HANDLECHANGE':
-        return Object.assign(state, action.payload)
+        return Object.assign(signUp, action.payload)
         case 'USER_AUTHO':
         return fetch('http://localhost:3000/login', {
                 method: "POST",
@@ -57,14 +44,33 @@ const changesOfReducers = (state = signUpReducer , action) => {
                 }
             })
         default:
-         return state
+         return signUp
     }
 };
 
+const changesUserLogin = (login = loginReducer ,action) => {
+    switch (action.type) {
+        case 'CREATE_USER':
+            return fetch("http://localhost:3000/v1/users", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user: action.payload })
+            }).then(window.location.href = '/login')
+        case 'USERLOGIN_HANDLECHANGE':
+            return Object.assign(login, action.payload)
+        case 'USER_LOGIN':
+            return Object.assign(login, action.payload)
+        default:
+         return login
+        }
+}
+
 export default combineReducers({
-    userLogin: loginReducer,
-    // userSignUp: signUpReducer,
+    userLogin: changesUserLogin,
     currentUser: currentUser,
-    changesInState: changesOfReducers,
+    changesInState: changesOfUserSignUp,
 });
 

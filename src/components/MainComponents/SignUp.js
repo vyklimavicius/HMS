@@ -5,17 +5,8 @@ import { getUserSignUp, handleUserSignUp } from '../../Actions/index';
 
 const SignUp = (props) => {
 
-    //    const userData = {
-    //      username: null,
-    //      name: null,
-    //      lastname: null,
-    //      email: null,
-    //      password: null,
-    //      image: null
-    //     };
-
+    
         const handleChange = (e) => {
-            // userData[e.target.name]= e.target.value;
             props.handleUserSignUp({[e.target.name]: e.target.value})
         };
 
@@ -24,7 +15,6 @@ const SignUp = (props) => {
             props.getUserSignUp(props.signUp);
         };
         
-        // console.log(props.signUp);
         
         return(
             <div>

@@ -4,7 +4,7 @@ import React from 'react';
 
 const UserDetails = (props) => {
 
-    console.log(props);
+    // console.log(props);
 
     const handleSubmit = () => {
       localStorage.clear();  

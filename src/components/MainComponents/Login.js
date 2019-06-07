@@ -1,33 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserLogin } from '../../Actions/index';
+import { getUserLogin, handleUserLogin } from '../../Actions/index';
 import { Link } from 'react-router-dom';
 
 
 
 const Login = (props) => {
 
-    const userLog = {
-      email: null,
-      password: null,
-      passwordConfirmation: null
-    };
-
+  
     const handleChange = (e) => {
-        userLog[e.target.name] = e.target.value;
+        props.handleUserLogin({ [e.target.name]: e.target.value })
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (userLog.password !== userLog.passwordConfirmation) {
+        if (props.password !== props.passwordConfirmation) {
           alert("Password confirmation don't match!")
         } else {
-          props.getUserLogin(userLog);
+          props.getUserLogin(props.user);
         }
     }
 
-    console.log(props);
-    
     return (
         <div>
          <h1>Login</h1>
@@ -46,7 +39,8 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return { user: state.userLogin}
+  console.log(state);
+  return { user: state.userLogin}
 }
 
-export default connect(mapStateToProps, { getUserLogin })(Login);
+export default connect(mapStateToProps, { getUserLogin, handleUserLogin })(Login);
