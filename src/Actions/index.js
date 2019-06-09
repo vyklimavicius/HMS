@@ -39,7 +39,7 @@ export const handleChange = (bool) => {
         type: 'CHANGE_STATE',
         payload: {clicked: !boolean}
     }
-}
+};
 
   //--// Create task form change
 export const taskChange = (task) => {    
@@ -47,7 +47,7 @@ export const taskChange = (task) => {
         type: 'HANDLETASK_CHANGE',
         payload: task
     }
-}
+};
   //--//
 
 export const addTask = (task) => {
@@ -55,11 +55,21 @@ export const addTask = (task) => {
         type: 'ADD_TASK',
         payload: task
     }
-}
+};
 
 export const deleteTask = () => {
     return {
         type: 'DELETE_TASK'
     }
-}
+};
 
+// Event actions
+export const handleEventChange = (bool) => {
+    console.log(bool);
+    // debugger
+    let boolean = bool.clicked;
+    return {
+        type: 'CHANGEEVENT_STATE',
+        payload: { clicked: !boolean }
+    }
+};

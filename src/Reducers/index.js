@@ -20,11 +20,18 @@ const taskbar = {
     name: null,
     description: null,
     clicked: false
-}
+};
+
+const eventDashboard = {
+    image: null,
+    name: null,
+    description: null,
+    clicked: false
+};
 
 const currentUser = () => {
     return JSON.parse(localStorage.getItem('user'))
-}
+};
 
 
 const changesOfUserSignUp = (signUp = signUpReducer ,  action) => {
@@ -47,7 +54,7 @@ const changesOfUserSignUp = (signUp = signUpReducer ,  action) => {
                     alert(user.errors);
                 } else {
                localStorage.setItem("user", JSON.stringify(user));
-                window.location.href = '/dashboard';
+               window.location.href = '/dashboard';
                 }
             })
         default:
@@ -95,10 +102,35 @@ const changesTask = ( taskBar = taskbar, action) => {
     }
 }
 
+const changesEvent = (events = eventDashboard, action) => {
+    switch (action.type) {
+        case 'CHANGEEVENT_STATE':
+         return {...events, ...action.payload}
+    //     case 'HANDLETASK_CHANGE':
+    //         return Object.assign(taskBar, action.payload)
+    //     case 'ADD_TASK':
+    //         return Object.assign(taskBar, {
+    //             tasks: [...taskBar.tasks, action.payload]
+    //         })
+    //     case 'DELETE_TASK':
+    //         taskBar.tasks.pop();
+    //         return Object.assign(taskBar, {
+    //             tasks: [...taskBar.tasks]
+    //         })
+    //     default:
+    //         return taskBar
+    // }
+    default:
+    return events
+    }
+};
+
 export default combineReducers({
     userLogin: changesUserLogin,
     currentUser: currentUser,
     changesInState: changesOfUserSignUp,
-    changesTask: changesTask
+    changesTask: changesTask,
+    changesEventDashboard: changesEvent
 });
+
 

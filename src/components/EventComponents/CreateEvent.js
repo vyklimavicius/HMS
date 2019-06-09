@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { handleEventChange } from '../../Actions/index';
 
-const CreateEvent = () => {
+const CreateEvent = (props) => {
     return (
         <div>
             <h1>Create Event</h1>
@@ -10,9 +12,19 @@ const CreateEvent = () => {
                 <input type="text" placeholder="description" value={null} name="description" onChange={null}></input>
                 <input type="submit" value="Create"></input>
             </form>
-            <button onClick={null}>Not today!</button>
+            <button onClick={() => props.handleEventChange(props.clicked)}>Not today!</button>
         </div>
     );
 }
 
-export default CreateEvent;
+const mapStateToProps = (state) => {
+    // console.log(state.changesEventDashboard.clicked);
+
+    return {
+        clicked: state.changesEventDashboard
+    }
+}
+
+
+
+export default connect( mapStateToProps, {handleEventChange } )(CreateEvent);

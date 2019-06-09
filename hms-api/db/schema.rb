@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_150248) do
     t.string "name"
     t.text "description"
     t.string "date"
-    t.binary "image"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_150248) do
     t.string "lastname"
     t.string "password_digest"
     t.string "email"
-    t.binary "image"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :description
       t.string :date
-      t.binary :image
+      t.string :image
 
       t.timestamps
     end
