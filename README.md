@@ -13,7 +13,7 @@ A prototype of management system that allows to manage a Household.(Assign tasks
 
 - Client side components:
 
-![Client side](public/componentsv2.png)
+![Client side](public/componentsv4.png)
 
 - Wireframes:
 

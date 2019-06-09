@@ -1,30 +1,42 @@
 import React from 'react';
 import CreateEvent from '../EventComponents/CreateEvent';
+import Event from '../EventComponents/Event'
 import { connect } from 'react-redux';
-import { handleEventChange} from '../../Actions/index';
+import { handleEventChange, deleteEvent, handleMemberChange} from '../../Actions/index';
+import AddMember from '../EventComponents/AddMember';
+import Member from '../EventComponents/Member';
 
 const EventDashboard = (props) => {
 
-    // console.log(props);
+    
     
     return (
         <div>
             <h2>This is the Event dashboard</h2>
-            {/* <image src="" alt=""></image> */}
-            {props.events.clicked ? <CreateEvent /> : null}
-            <button onClick={() => props.handleEventChange(props.events.clicked)}>Create event</button>
-            <button onClick={null}>Delete event</button>
+            {props.arrayEvents.length > 0 ? props.arrayEvents.map(event => {
+                return <Event event={event} />
+            }) : null}
+            {props.clickedEvent ? <CreateEvent /> : null}
+            {props.arrayMembers.length > 0 ? props.arrayMembers.map(member => {
+                return <Member member={member} />
+            }) : null}
+            {props.clickedMember ? <AddMember /> : null}
+            <button onClick={() => props.handleMemberChange(props.clickedMember)}>Add a member</button>
+            <button onClick={() => props.handleEventChange(props.clickedEvent)}>Create event</button>
+            <button onClick={props.deleteEvent}>Delete event</button>
 
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
-    // console.log(state.changesEventDashboard);
-
     return {
-        events: state.changesEventDashboard
+        arrayMembers: state.changesEventDashboard.members,
+        arrayEvents: state.changesEventDashboard.events,
+        clickedEvent: state.changesEventDashboard.clickedEvent,
+        clickedMember: state.changesEventDashboard.clickedMember,
+        arrayMembers: state.changesEventDashboard.members
     }
 }
 
-export default connect(mapStateToProps, { handleEventChange })(EventDashboard);
+export default connect(mapStateToProps, { handleEventChange, deleteEvent, handleMemberChange })(EventDashboard);

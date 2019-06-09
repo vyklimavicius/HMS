@@ -23,10 +23,14 @@ const taskbar = {
 };
 
 const eventDashboard = {
+    events: [],
     image: null,
     name: null,
     description: null,
-    clicked: false
+    clickedEvent: false,
+    clickedMember: false,
+    memberName: null,
+    members: []
 };
 
 const currentUser = () => {
@@ -102,26 +106,31 @@ const changesTask = ( taskBar = taskbar, action) => {
     }
 }
 
-const changesEvent = (events = eventDashboard, action) => {
+const changesEvent = (event = eventDashboard, action) => {
     switch (action.type) {
         case 'CHANGEEVENT_STATE':
-         return {...events, ...action.payload}
-    //     case 'HANDLETASK_CHANGE':
-    //         return Object.assign(taskBar, action.payload)
-    //     case 'ADD_TASK':
-    //         return Object.assign(taskBar, {
-    //             tasks: [...taskBar.tasks, action.payload]
-    //         })
-    //     case 'DELETE_TASK':
-    //         taskBar.tasks.pop();
-    //         return Object.assign(taskBar, {
-    //             tasks: [...taskBar.tasks]
-    //         })
-    //     default:
-    //         return taskBar
-    // }
+         return {...event, ...action.payload}
+        case 'CHANGEMEMBER_STATE':
+            return { ...event, ...action.payload }
+        case 'HANDLEEVENT_CHANGE':
+            return Object.assign(event, action.payload)
+        case 'ADD_EVENT':
+            return Object.assign(event, {
+                events: [...event.events, action.payload]
+            })
+        case 'DELETE_EVENT':
+            event.events.pop();
+            return Object.assign(event, {
+                events: [...event.events]
+            })
+        case 'HANDLEMEMBER_CHANGE':
+            return Object.assign(event, action.payload)
+        case 'ADD_MEMBER':
+            return Object.assign(event, {
+                members: [...event.members, action.payload]
+            })
     default:
-    return events
+    return event
     }
 };
 

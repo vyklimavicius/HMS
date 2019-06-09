@@ -25,7 +25,7 @@ const SignUp = (props) => {
                     <input type="text" placeholder="Last Name" name="lastname" value={props.signUp.lastname} onChange={handleChange}></input>
                     <input type="email" placeholder="Email" name="email" value={props.signUp.email} onChange={handleChange}></input>
                     <input type="password" placeholder="Password" name="password" value={props.signUp.password} onChange={handleChange}></input>
-                    <input type="file" placeholder="Upload Image" name="image" value={props.signUp.image} onChange={handleChange}></input>
+                    <input type="url" placeholder="Upload http://image.com" name="image" value={props.signUp.image} onChange={handleChange}></input>
                 <input type="submit" value="Submit"></input>
                 </form>
             </div>

@@ -33,7 +33,7 @@ export const handleUserLogin = (event) => {
 
 // Taskbar actions 
 
-export const handleChange = (bool) => {
+export const handleBoolChange = (bool) => {
     let boolean = bool.clicked;
     return {
         type: 'CHANGE_STATE',
@@ -64,12 +64,56 @@ export const deleteTask = () => {
 };
 
 // Event actions
+
 export const handleEventChange = (bool) => {
-    console.log(bool);
-    // debugger
-    let boolean = bool.clicked;
+    let boolean = bool.clickedEvent;
     return {
         type: 'CHANGEEVENT_STATE',
-        payload: { clicked: !boolean }
+        payload: { clickedEvent: !boolean }
+    }
+};
+
+//--// Create event form change
+export const eventChange = (event) => {
+    return {
+        type: 'HANDLEEVENT_CHANGE',
+        payload: event
+    }
+};
+  //--//
+
+export const addEvent = (event) => {
+    return {
+        type: 'ADD_EVENT',
+        payload: event
+    }
+};
+
+export const deleteEvent = () => {
+    return {
+        type: 'DELETE_EVENT'
+    }
+};
+
+// Members action 
+
+export const handleMemberChange = (bool) => {
+    return {
+        type: 'CHANGEMEMBER_STATE',
+        payload: { clickedMember: !bool }
+    }
+};
+
+export const addMember = (member) => {
+    return {
+        type: 'ADD_MEMBER',
+        payload: member
+    }
+};
+
+export const memberChange = (member) => {
+    return {
+        type: 'HANDLEMEMBER_CHANGE',
+        payload: member
     }
 };

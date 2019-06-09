@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateTasks from '../TaskComponents/CreateTasks';
 import { connect } from 'react-redux';
-import { handleChange, deleteTask } from '../../Actions/index'
+import { handleBoolChange, deleteTask } from '../../Actions/index'
 import Task from '../TaskComponents/Task';
 
 const TaskBar = (props) => {
@@ -15,7 +15,7 @@ const TaskBar = (props) => {
                     return <Task task={task} />
                 }) : null}
                 {props.clicked.clicked ? <CreateTasks name={props.name} description={props.description} /> : null}
-                <button onClick={() => props.handleChange(props.clicked)}>Create task</button>
+                <button onClick={() => props.handleBoolChange(props.clicked)}>Create task</button>
                 <button onClick={props.deleteTask}>Delete task</button>
             </div>
         );
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { handleChange, deleteTask })(TaskBar);
+export default connect(mapStateToProps, { handleBoolChange, deleteTask })(TaskBar);

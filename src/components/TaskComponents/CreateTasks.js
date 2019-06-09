@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleChange, taskChange, addTask } from '../../Actions/index';
+import { handleBoolChange, taskChange, addTask } from '../../Actions/index';
 
 const CreateTasks = (props) => {
 
@@ -26,7 +26,7 @@ const CreateTasks = (props) => {
             <input type="text" placeholder="description" value={props.description} name="description" onChange={handleChange}></input>
             <input type="submit" value="Create"></input>
             </form>
-            <button onClick={() => props.handleChange(props.clicked)}>Never Mind!</button>
+            <button onClick={() => props.handleBoolChange(props.clicked)}>Never Mind!</button>
         </div>
     );
 }
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => {
         clicked: state.changesTask
     }
 }
-export default connect(mapStateToProps, { handleChange, taskChange, addTask })(CreateTasks);
+export default connect(mapStateToProps, { handleBoolChange, taskChange, addTask })(CreateTasks);
