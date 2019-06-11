@@ -4,7 +4,6 @@ import { handleBoolChange, taskChange, addTask } from '../../Actions/index';
 
 const CreateTasks = (props) => {
 
-    // console.log(props);
     
 
     const handleChange = (e) => {

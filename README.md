@@ -40,13 +40,13 @@ Client side:
 
    - React 
    - Redux
-   - React-BootStrap
+   - Material-UI
    - React-Routes
 
 API's:
 
    - TextBelt(sms)
-   - NodeMailer-React(smtp)
+   - EmailJS(smtp)
 
 
 Copyright Vytautas Klimavicius 2019

@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { handleEventChange, deleteEvent, handleMemberChange} from '../../Actions/index';
 import AddMember from '../EventComponents/AddMember';
 import Member from '../EventComponents/Member';
+import Notification from '../EventComponents/Notification';
+import Typography from '@material-ui/core/Typography';
+
 
 const EventDashboard = (props) => {
 
@@ -12,7 +15,9 @@ const EventDashboard = (props) => {
     
     return (
         <div>
-            <h2>This is the Event dashboard</h2>
+            <Typography style={{textAlign: 'center'}}>
+            <h2>EVENT DASHBOARD</h2>
+            </Typography>
             {props.arrayEvents.length > 0 ? props.arrayEvents.map(event => {
                 return <Event event={event} />
             }) : null}
@@ -22,16 +27,18 @@ const EventDashboard = (props) => {
             }) : null}
             {props.clickedMember ? <AddMember /> : null}
             <button onClick={() => props.handleMemberChange(props.clickedMember)}>Add a member</button>
-            <button onClick={() => props.handleEventChange(props.clickedEvent)}>Create event</button>
-            <button onClick={props.deleteEvent}>Delete event</button>
-
+            <Notification />
+            {/* <Email /> */}
+            <div style={{textAlign: 'center'}}>
+             <button onClick={() => props.handleEventChange(props.clickedEvent)}>Create event</button>
+             <button onClick={props.deleteEvent}>Delete event</button>
+            </div>
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        arrayMembers: state.changesEventDashboard.members,
         arrayEvents: state.changesEventDashboard.events,
         clickedEvent: state.changesEventDashboard.clickedEvent,
         clickedMember: state.changesEventDashboard.clickedMember,

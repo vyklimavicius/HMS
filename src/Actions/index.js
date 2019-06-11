@@ -117,3 +117,27 @@ export const memberChange = (member) => {
         payload: member
     }
 };
+
+// Notification 
+
+export const handleNotificationBoolean = (bool) => {
+    // debugger
+    return {
+        type: 'CHANGENOTIFY_BOOL',
+        payload: { clicked: !bool }
+    }
+};
+
+export const handleStateChange = (notify) => {
+    return {
+        type: 'CHANGENOTIFY_STATE',
+        payload: notify
+    }
+};
+
+export const handleAddNotification = (notification) => {
+    return {
+        type: 'ADD_NOTIFICATION',
+        payload: notification
+    }
+}

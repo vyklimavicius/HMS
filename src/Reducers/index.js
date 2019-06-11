@@ -30,7 +30,18 @@ const eventDashboard = {
     clickedEvent: false,
     clickedMember: false,
     memberName: null,
-    members: []
+    members: [], 
+};
+
+const notify = {
+    memberName: null,
+    task: null,
+    email: null,
+    phoneNumber: null,
+    emailMessage: null,
+    phoneMessage: null,
+    // notifications: [],
+    clicked: false
 };
 
 const currentUser = () => {
@@ -134,12 +145,49 @@ const changesEvent = (event = eventDashboard, action) => {
     }
 };
 
+const changesNotification = (notification = notify, action) => {
+    switch (action.type) {
+        case 'CHANGENOTIFY_BOOL':
+            return { ...notification, ...action.payload }
+        case 'CHANGENOTIFY_STATE':
+            return { ...notification, ...action.payload }
+        case 'ADD_NOTIFICATION':
+            let templateParams = {
+                to_name: `${action.payload.memberName}`,
+                to_task: `${action.payload.task}`,
+                message_html: `${action.payload.emailMessage}`,
+                to_email: `${action.payload.email}`,
+                from_name: 'HMS Team',
+            };
+
+            return window.emailjs.send('gmail', 'template_sBHNuR2i', templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function (error) {
+                    console.log('FAILED...', error);
+                }).then(
+                    fetch("https://textbelt.com/text", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `phone=${action.payload.phoneNumber}&message=${action.payload.phoneMessage}&key=cba0e9828848fe4532b821f133138d9e8a06f0f2F6GD541TjhLBVVrKkue0hSeHr`
+                    }).then(response => response.json())
+                        .then(json => {
+                            console.log(json);
+                        })
+                )
+        default:
+        return notification  
+    };
+};
+
 export default combineReducers({
     userLogin: changesUserLogin,
     currentUser: currentUser,
     changesInState: changesOfUserSignUp,
     changesTask: changesTask,
-    changesEventDashboard: changesEvent
+    changesEventDashboard: changesEvent,
+    changesNotification: changesNotification
 });
-
 

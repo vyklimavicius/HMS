@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleEventChange, eventChange, addEvent } from '../../Actions/index';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+
 
 const CreateEvent = (props) => {
 
@@ -18,7 +21,7 @@ const CreateEvent = (props) => {
     };
 
     return (
-        <div>
+        <Card>
             <h1>Create Event</h1>
             <form onSubmit={handleSubmit}>
                 <input type="url" placeholder="https://example.com" value={props.eventProps.image} name="image" onChange={handleChange}></input>
@@ -26,8 +29,10 @@ const CreateEvent = (props) => {
                 <input type="text" placeholder="description" value={props.eventProps.description} name="description" onChange={handleChange}></input>
                 <input type="submit" value="Create"></input>
             </form>
-            <button onClick={() => props.handleEventChange(props.clickedEvent)}>Not today!</button>
-        </div>
+            <CardActions>
+                <button onClick={() => props.handleEventChange(props.clickedEvent)}>Not today!</button>
+            </CardActions>
+        </Card>
     );
 }
 
