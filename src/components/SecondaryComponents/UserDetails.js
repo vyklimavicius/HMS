@@ -2,6 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 
 const UserDetails = (props) => {
@@ -12,13 +16,6 @@ const UserDetails = (props) => {
       window.location.href = '/login';
     };
 
-    // const stylingAvatar = makeStyles({
-    //     avatar: {
-    //         margin: 10,
-    //         width: 80,
-    //         height: 100,
-    //     }
-    // });
 
     const stylingAvatar = makeStyles({
         avatar: {
@@ -30,22 +27,34 @@ const UserDetails = (props) => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '3px'
+        }, button: {
+            backgroundColor: '#16162D',
+            color: 'white'
+        }, card: {
+            height: 450,
+            marginTop: 100,
+            paddingTop: 70,
+            width: 100,           
+            backgroundColor: 'white'            
+
         }
     });
 
     const classes = stylingAvatar();
 
     return (
-        <div>
+        <Card className={classes.card}>
             <Avatar src={props.user.image} alt={props.user.name} className={classes.avatar}></Avatar>
             <Typography align='center'>
-            <h2>User details</h2>
+            <InputLabel htmlFor="component-simple">Username:</InputLabel>
             <h3>{props.user.username}</h3>
+            <InputLabel htmlFor="component-simple">Name:</InputLabel>
             <h4>{props.user.name}</h4>
+            <InputLabel htmlFor="component-simple">Lastname:</InputLabel>
             <h5>{props.user.lastname}</h5>
-            <button onClick={handleSubmit}>Logout</button>
+            <Button className={classes.button} onClick={handleSubmit}>Logout</Button>
             </Typography>
-        </div>
+        </Card>
     )
 }
 

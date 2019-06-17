@@ -4,6 +4,7 @@ const loginReducer = {
     email: null,
     password: null,
     passwordConfirmation: null,
+    showPassword: false,
 };
 
 const signUpReducer = {
@@ -104,9 +105,13 @@ const changesTask = ( taskBar = taskbar, action) => {
         case 'HANDLETASK_CHANGE':
             return Object.assign(taskBar, action.payload)
         case 'ADD_TASK':
-            return Object.assign(taskBar, {
-                tasks: [...taskBar.tasks, action.payload]
-            })
+            if (taskBar.tasks.length >= 10) {
+                return taskBar
+            } else {
+                return Object.assign(taskBar, {
+                    tasks: [...taskBar.tasks, action.payload]
+                })
+            }
         case 'DELETE_TASK':
             taskBar.tasks.pop();
             return Object.assign(taskBar, {
@@ -126,9 +131,13 @@ const changesEvent = (event = eventDashboard, action) => {
         case 'HANDLEEVENT_CHANGE':
             return Object.assign(event, action.payload)
         case 'ADD_EVENT':
-            return Object.assign(event, {
-                events: [...event.events, action.payload]
-            })
+            if (event.events.length >= 1) {
+                return event
+            } else {
+                return Object.assign(event, {
+                    events: [...event.events, action.payload]
+                })
+            }
         case 'DELETE_EVENT':
             event.events.pop();
             return Object.assign(event, {

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 
 const Notification = (props) => {
@@ -15,7 +16,11 @@ const Notification = (props) => {
             width: 300,
             padding: 1,
             textAlign: 'center',
-            marginBottom: 2
+            textDecorationColor: 'white',
+            marginBottom: 2,
+            backgroundColor: 'rgba(255,0,0,0.2)'
+        }, button: {
+            paddingLeft: 120,
         }
     })
 
@@ -24,12 +29,13 @@ const Notification = (props) => {
     return (
         <Card className={classes.card}>
             <Typography>
-            <h2>NOTIFICATION CENTER</h2>
+            <img style={{marginTop: 5}} src="http://localhost:3000/notificationCenter.png" alt="notification"></img>
+            {/* <h2>NOTIFICATION CENTER</h2> */}
             </Typography>
             {props.clicked ? <Notify /> : null}
-        <CardActions>
-         <button onClick={() => props.handleNotificationBoolean(props.clicked)}>Notify</button>
-        </CardActions>
+         <CardActions className={classes.button}>
+          <Button onClick={() => props.handleNotificationBoolean(props.clicked)}>Notify</Button>
+         </CardActions>
         </Card>
     );
 };

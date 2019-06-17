@@ -5,14 +5,26 @@ import { Link } from 'react-router-dom';
 import { Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import {AccountCircle} from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
 
 
 const Login = (props) => {
 
+    // Hooks
+    // const [values, setValues] = React.useState({
+    //   showPassword: false,
+    // });
 
-
+    // const handleClickShowPassword = () => {
+    // setValues({ ...values, showPassword: !values.showPassword });
+    // };
+    // Hooks
   
     const handleChange = (e) => {
+        console.log(e.target.id); 
         props.handleUserLogin({ [e.target.name]: e.target.value })
     };
 
@@ -58,6 +70,12 @@ const Login = (props) => {
                 autoComplete="email"
                 margin="normal"
                 variant="outlined"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment style={{ color: '#16162D'}} position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  ),}}
               />
               <TextField
                 id="outlined-password-input"
@@ -65,11 +83,23 @@ const Login = (props) => {
                 className={classes.textField}
                 value={props.user.password}
                 onChange={handleChange}
-                type="password"
+                type={props.showPassword ? "text" : "password"}
                 name="password"
                 autoComplete="current-password"
                 margin="normal"
                 variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton style={{ color: '#16162D' }}
+                        edge="end"
+                        aria-label="Toggle password visibility"
+                      >
+                        <Visibility />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 id="outlined-password-input"
@@ -82,6 +112,18 @@ const Login = (props) => {
                 autoComplete="current-password"
                 margin="normal"
                 variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton style={{ color: '#16162D' }}
+                        edge="end"
+                        aria-label="Toggle password visibility"
+                      >
+                        <Visibility />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 className={classes.textField}

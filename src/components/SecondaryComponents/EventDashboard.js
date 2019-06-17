@@ -7,17 +7,44 @@ import AddMember from '../EventComponents/AddMember';
 import Member from '../EventComponents/Member';
 import Notification from '../EventComponents/Notification';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 
 
 const EventDashboard = (props) => {
 
+    const useStyles = makeStyles(theme => ({
+        card: {
+            margin: theme.spacing(1),
+            width: 350,
+            marginLeft: 350,
+            marginTop: 30,
+            paddingLeft: 140,
+            backgroundColor: '#16162D',
+        },  button: {
+            color: 'white'
+        }, memberCard: {
+            margin: theme.spacing(1),
+            width: 100,
+            marginLeft: 530,
+            marginTop: 30,
+            paddingLeft: 20,
+            paddingRight: 20,
+            backgroundColor: '#16162D',
+        }
+    }));
+
+    const classes = useStyles();
     
     
     return (
         <div>
             <Typography style={{textAlign: 'center'}}>
-            <h2>EVENT DASHBOARD</h2>
+            <img style={{ marginLeft: 0 }} src="http://localhost:3000/eventDash.png" alt="event"></img>
             </Typography>
+            <br></br>
+            <br></br>
             {props.arrayEvents.length > 0 ? props.arrayEvents.map(event => {
                 return <Event event={event} />
             }) : null}
@@ -26,13 +53,16 @@ const EventDashboard = (props) => {
                 return <Member member={member} />
             }) : null}
             {props.clickedMember ? <AddMember /> : null}
-            <button onClick={() => props.handleMemberChange(props.clickedMember)}>Add a member</button>
+            <Card className={classes.memberCard}>
+            <Button className={classes.button} onClick={() => props.handleMemberChange(props.clickedMember)}>Add a member</Button>
+            </Card>
             <Notification />
-            {/* <Email /> */}
-            <div style={{textAlign: 'center'}}>
-             <button onClick={() => props.handleEventChange(props.clickedEvent)}>Create event</button>
-             <button onClick={props.deleteEvent}>Delete event</button>
-            </div>
+             {props.arrayEvents.length > 0 ? null : 
+                <Card className={classes.card}>
+                 <Button className={classes.button} onClick={() => props.handleEventChange(props.clickedEvent)}>Create event</Button>
+                 <Button className={classes.button} onClick={props.deleteEvent}>Delete event</Button>
+                </Card>
+             }
         </div>
     );
 }

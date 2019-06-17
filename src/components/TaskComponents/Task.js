@@ -8,9 +8,11 @@ const Task = (props) => {
 
     const useStyles = makeStyles(theme => ({
         button: {
-            margin: theme.spacing(1),
+            marginTop: 50,
+            marginRight: 5,   
+            marginLeft: 40,
             backgroundColor: '#16162D',
-            color: 'white'
+            color: 'white',
         },
         input: {
             display: 'none',
