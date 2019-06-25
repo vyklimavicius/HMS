@@ -27,7 +27,7 @@ const CreateEvent = (props) => {
             width: 250,
             marginBottom: 0,
             marginLeft: 940,
-            marginTop: -450,
+            marginTop: -490,
             paddingLeft: 20,
             boxShadow: '10px 10px #16162D',
             border: '1px solid black',

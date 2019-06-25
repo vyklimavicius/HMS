@@ -50,7 +50,7 @@ const Login = (props) => {
     return (
         <Grid container>
         <Grid item sm>
-          <img style={{ border: '3px solid #16162D', width: 800, height: 500, padding: 0, marginTop: 110, marginLeft: 70 }} src="http://localhost:3000/tasking.jpg" alt="task"></img>
+          <img style={{ border: '3px solid #16162D', width: 800, height: 500, padding: 0, marginTop: 110, marginLeft: 150 }} src="http://localhost:3000/tasking.jpg" alt="task"></img>
         </Grid>
           <Grid item sm>
           <Paper style={{ border: '1px solid grey', boxShadow: '10px 10px #16162D', padding: 5, marginTop: 100, marginBottom: 10, height: 510, width: 300, marginLeft: 30 }}>

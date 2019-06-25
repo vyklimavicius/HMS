@@ -58,6 +58,7 @@ const SignUp = (props) => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                required
                 />
                 <TextField
                 id="outlined-name-input"
@@ -69,6 +70,7 @@ const SignUp = (props) => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                required
                 />
                 <TextField
                 id="outlined-lastname-input"
@@ -80,6 +82,7 @@ const SignUp = (props) => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                required
                 />
                 <TextField
                 id="outlined-email-input"
@@ -91,6 +94,7 @@ const SignUp = (props) => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                required
                 />
                 <TextField
                 id="outlined-password-input"
@@ -102,6 +106,7 @@ const SignUp = (props) => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                required
                 />
                 <TextField
                 id="outlined-url-input"
